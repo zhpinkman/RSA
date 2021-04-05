@@ -43,5 +43,6 @@ def generate_cipher(plain_text, e, n, C_len, out_file):
 
 e, n = read_key('public.key')
 C_len = find_number_of_output_bytes(n)
+print(C_len)
 plain_text = read_input_file('input.txt')
 generate_cipher(plain_text, e, n, C_len, 'input.txt.enc')

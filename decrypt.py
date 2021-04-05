@@ -33,7 +33,8 @@ def find_number_of_output_bytes(n):
 def decrypt_cipher(cipher_text, d, n, C_len, out_file):
     decrypted_result = []
     for i in range(int(len(cipher_text) / C_len)):
-        block = bytearray([cipher_text[j] for j in range(2*i, 2*i+C_len)])
+        block = bytearray([cipher_text[j]
+                           for j in range(C_len*i, C_len*i+C_len)])
         block_int = int.from_bytes(block, sys.byteorder)
         decrypted_block = (block_int ** d) % n
         decrypted_result.append(decrypted_block)
@@ -46,5 +47,6 @@ def decrypt_cipher(cipher_text, d, n, C_len, out_file):
 
 d, n = read_key('private.key')
 C_len = find_number_of_output_bytes(n)
+print(C_len)
 cipher_text = read_cipher_text('input.txt.enc')
 decrypt_cipher(cipher_text, d, n, C_len, 'output.txt')

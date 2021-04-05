@@ -81,4 +81,7 @@ def generate_keypairs(p, q):
 # generate_keypairs(2, 4)
 # generate_keypairs(3, 3)
 # generate_keypairs(2, 7)
-generate_keypairs(29, 13)
+
+p = int(input('enter the first prime number p: '))
+q = int(input('enter the second prime numberq: '))
+generate_keypairs(p, q)
