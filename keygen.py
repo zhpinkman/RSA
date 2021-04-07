@@ -67,7 +67,6 @@ def generate_keypairs(p, q):
         g2 = gcd(e, n)
 
     d = extended_gcd(e, phi)[1]
-    d += phi
     while d < 0:
         d += phi
     print('p: {}, q: {}, n: {}, phi: {}, e: {}, d: {}'.format(p, q, n, phi, e, d))

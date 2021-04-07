@@ -2,6 +2,7 @@ import math
 import numpy
 import random
 import sys
+from tqdm import tqdm
 
 
 def read_key(filename):
@@ -32,16 +33,16 @@ def find_number_of_output_bytes(n):
 
 def decrypt_cipher(cipher_text, d, n, C_len, out_file):
     decrypted_result = []
-    for i in range(int(len(cipher_text) / C_len)):
+    for i in tqdm(range(int(len(cipher_text) / C_len))):
         block = bytearray([cipher_text[j]
                            for j in range(C_len*i, C_len*i+C_len)])
         block_int = int.from_bytes(block, sys.byteorder)
-        decrypted_block = (block_int ** d) % n
+        decrypted_block = pow(block_int, d) % n
         decrypted_result.append(decrypted_block)
 
-    plain_text = ''.join([chr(ascii_byte) for ascii_byte in decrypted_result])
-    with open(out_file, 'w') as f:
-        f.write(plain_text)
+    # plain_text = ''.join([chr(ascii_byte) for ascii_byte in decrypted_result])
+    with open(out_file, 'wb') as f:
+        f.write(bytes(decrypted_result))
         f.close()
 
 
