@@ -37,10 +37,9 @@ def decrypt_cipher(cipher_text, d, n, C_len, out_file):
         block = bytearray([cipher_text[j]
                            for j in range(C_len*i, C_len*i+C_len)])
         block_int = int.from_bytes(block, sys.byteorder)
-        decrypted_block = pow(block_int, d) % n
+        decrypted_block = pow(block_int, d, n)
         decrypted_result.append(decrypted_block)
 
-    # plain_text = ''.join([chr(ascii_byte) for ascii_byte in decrypted_result])
     with open(out_file, 'wb') as f:
         f.write(bytes(decrypted_result))
         f.close()

@@ -57,10 +57,10 @@ def generate_keypairs(p, q):
 
     phi = (p - 1) * (q - 1)
 
-    e = random.randrange(2, min(phi, 1e7))
+    e = random.randrange(2, phi)
     g = gcd(e, phi)
     while g != 1:
-        e = random.randrange(2, min(phi, 1e7))
+        e = random.randrange(2, phi)
         g = gcd(e, phi)
 
     d = extended_gcd(e, phi)[1]
