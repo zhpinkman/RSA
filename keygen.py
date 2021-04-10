@@ -48,35 +48,32 @@ def generate_keypairs(p, q):
         print('Both numbers you are entering must be prime!')
         return -1
     if p == q:
-        print('Numbers you are are entering must be not the same!')
+        print('Numbers you are entering must not be the same!')
         return -1
     n = p * q
     if n < 256:
-        print('The multiplication of two numbers entered must be greater than 256!')
+        print('The multiplication of two numbers entered must be greater than or equal to 256!')
         return -1
 
     phi = (p - 1) * (q - 1)
 
-    e = random.randrange(256, min(phi, 1e7))
+    e = random.randrange(2, min(phi, 1e7))
     g = gcd(e, phi)
     while g != 1:
-        e = random.randrange(256, min(phi, 1e7))
+        e = random.randrange(2, min(phi, 1e7))
         g = gcd(e, phi)
 
     d = extended_gcd(e, phi)[1]
     while d < 0:
         d += phi
-    print('p: {}, q: {}, n: {}, phi: {}, e: {}, d: {}'.format(p, q, n, phi, e, d))
+
+    print(p, q, n, phi, e, d)
 
     write_key((e, n), 'public.key')
     write_key((d, n), 'private.key')
 
-    return ((e, n), (d, n))
+    return 0
 
-
-# generate_keypairs(2, 4)
-# generate_keypairs(3, 3)
-# generate_keypairs(2, 7)
 
 p = int(input('enter the first prime number p: '))
 q = int(input('enter the second prime numberq: '))
