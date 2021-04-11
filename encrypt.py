@@ -33,7 +33,7 @@ def find_number_of_output_bytes(n):
 
 def generate_cipher(plain_text, e, n, C_len, out_file):
     with open(out_file, 'wb') as f:
-        for byte in tqdm(plain_text):
+        for byte in plain_text:
             cipher = pow(byte, e, n)
             cipher = cipher.to_bytes(C_len, sys.byteorder)
             f.write(cipher)
