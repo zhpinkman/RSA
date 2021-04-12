@@ -76,5 +76,5 @@ def generate_keypairs(p, q):
 
 
 p = int(input('enter the first prime number p: '))
-q = int(input('enter the second prime numberq: '))
+q = int(input('enter the second prime number q: '))
 generate_keypairs(p, q)
